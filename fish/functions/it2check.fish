@@ -82,11 +82,7 @@ function it2check --description "Check if we are in an iTerm2 shell" --argument-
         stty "$_stty"
 
         if [ "$term" = "ITERM2" ]
-            # The version comparison below doesn't actually work well at all
-            # because the the test comparison can't cope with rich semantic
-            # versioning.  This is a direct, bug-for-bug port of the bundled
-            # bash script.
-            if [ "$vers" > "$MIN_VERSION" -o "$vers" = "$MIN_VERSION" ]
+            if expr $vers \>= $MIN_VERSION >/dev/null
                 return 0
             end
         end
